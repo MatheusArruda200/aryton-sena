@@ -1,43 +1,53 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from "expo-router";
+import React from "react";
+import Entypo from "@expo/vector-icons/Entypo";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        headerStyle: {
+          backgroundColor: "#eecb01",
+        },
+        headerTitleStyle: {
+          color: "#000",
+          fontWeight: "bold",
+        },
+
+        tabBarStyle: {
+          backgroundColor: "#eecb01",
+        },
+        tabBarActiveTintColor: "#bb2511",
+        tabBarInactiveTintColor: "#000",
+        tabBarActiveBackgroundColor: "#ffff",
+        tabBarInactiveBackgroundColor: "#eecb01",
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Início",
+          tabBarIcon: ({ color }) => (
+            <Entypo name="home" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="sobre"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Sobre",
+          tabBarIcon: ({ color }) => (
+            <Entypo name="info" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="vitorias"
+        options={{
+          title: "Vitórias",
+          tabBarIcon: ({ color }) => (
+            <Entypo name="trophy" size={24} color={color} />
+          ),
         }}
       />
     </Tabs>
